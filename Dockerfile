@@ -1,4 +1,4 @@
-FROM centos:8 as base
+FROM registry.access.redhat.com/ubi8/ubi:latest AS base
 ARG channel="stable"
 ARG location
 
@@ -35,7 +35,7 @@ COPY --from=executor-img /coreos_production_qemu_image.qcow2 /userdata/coreos_pr
 COPY start.sh /userdata/start.sh
 
 RUN chgrp -R 0 /userdata && \
-    chmod -R g=u /userdata
+	chmod -R g=u /userdata
 
 LABEL com.coreos.channel ${channel}
 
