@@ -1,10 +1,10 @@
-FROM centos:8 as base
+FROM quay.io/centos/centos:stream8 as base
 ARG channel="stable"
 ARG location
 
 RUN [ -z "${channel}" ] && echo "ARG channel is required" && exit 1 || true
 
-RUN yum -y install jq
+RUN yum -y install jq xz
 RUN curl https://builds.coreos.fedoraproject.org/streams/${channel}.json -o stable.json && \
 	cat stable.json | jq '.architectures.x86_64.artifacts.qemu.release' | tr -d '"'
 
