@@ -13,17 +13,10 @@ RUN ARCH=$(uname -m) ; echo $ARCH \
 
 FROM base AS executor-img
 
-RUN ARCH=$(uname -m) ; echo $ARCH ; \
-        if [[ $ARCH == "ppc64le" ]] ; then \
-        echo "Downloading https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/36.20220906.3.1/ppc64le/fedora-coreos-36.20220906.3.1-qemu.ppc64le.qcow2.xz" && \
-        curl -s -o coreos_production_qemu_image.qcow2.xz https://builds.coreos.fedoraproject.org/prod/streams/stable/builds/36.20220906.3.1/ppc64le/fedora-coreos-36.20220906.3.1-qemu.ppc64le.qcow2.xz && \
-        unxz coreos_production_qemu_image.qcow2.xz ; \
-        else \
-        echo $ARCH && \
+RUN ARCH=$(uname -m) ; \
         echo "Downloading" $(cat stable.json | jq -r --arg arch "$ARCH" '.architectures[$arch].artifacts.qemu.formats."qcow2.xz".disk.location') && \
         curl -s -o coreos_production_qemu_image.qcow2.xz $(cat stable.json | jq -r --arg arch "$ARCH" '.architectures[$arch].artifacts.qemu.formats."qcow2.xz".disk.location') && \
-        unxz coreos_production_qemu_image.qcow2.xz \
-        ; fi
+        unxz coreos_production_qemu_image.qcow2.xz
 
 FROM base AS final
 ARG channel=stable
