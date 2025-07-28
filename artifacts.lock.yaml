@@ -1,0 +1,13 @@
+---
+metadata:
+  version: "1.0"
+artifacts:
+  - download_url: https://rhcos.mirror.openshift.com/art/storage/prod/streams/4.12/builds/412.86.202305030814-0/x86_64/rhcos-412.86.202305030814-0-qemu.x86_64.qcow2.gz
+    checksum: sha256:d96caa2a78dc134f2068212a6ca8f171a036792c6afbc7a406c18c2978527585
+    filename: rhcos-qemu.x86_64.qcow2.gz
+  - download_url: https://rhcos.mirror.openshift.com/art/storage/prod/streams/4.12/builds/412.86.202305030814-0/ppc64le/rhcos-412.86.202305030814-0-qemu.ppc64le.qcow2.gz
+    checksum: sha256:86d0b036aedbbff7c45187526f9a9c04ffea6457f76349f23b12accab3b8f43d
+    filename: rhcos-qemu.ppc64le.qcow2.gz
+  - download_url: https://rhcos.mirror.openshift.com/art/storage/prod/streams/4.12/builds/412.86.202305030814-0/s390x/rhcos-412.86.202305030814-0-qemu.s390x.qcow2.gz
+    checksum: sha256:82283e6c71f8b71be1d9156c0f0aabfd8fd44f9524f3b6da06b95054de3393f3
+    filename: rhcos-qemu.s390x.qcow2.gz
