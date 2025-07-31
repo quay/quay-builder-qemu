@@ -1,0 +1,41 @@
+# Containerfile for konflux builds
+# Based on Dockerfile but with some necessary changes:
+# 1. Use registry base images
+# 2. fetch qemu artifact from cachi2 instead of downloading from internet
+FROM registry.redhat.io/ubi8/ubi:8.10-1752733233 AS builder
+
+WORKDIR /app
+
+RUN INSTALL_PKGS="\
+        gzip \
+        " && \
+    yum -y --setopt=tsflags=nodocs --setopt=skip_missing_names_on_install=False install $INSTALL_PKGS && \
+    yum -y update && \
+    yum -y clean all
+
+COPY start.sh /app/start.sh
+
+RUN cp /cachi2/output/deps/generic/rhcos-qemu.$(uname -m).qcow2.gz .
+RUN gunzip rhcos-qemu.$(uname -m).qcow2.gz
+
+FROM registry.redhat.io/ubi8/ubi:8.10-1752733233
+
+RUN mkdir -p /userdata
+WORKDIR /userdata
+
+COPY --from=builder /app/rhcos-qemu.*.qcow2 /userdata/coreos_production_qemu_image.qcow2
+COPY --from=builder /app/start.sh /userdata/start.sh
+
+RUN INSTALL_PKGS="\
+        openssh-clients \
+        qemu-kvm \
+        libgcrypt-devel \
+        " && \
+    yum -y --setopt=tsflags=nodocs --setopt=skip_missing_names_on_install=False install $INSTALL_PKGS && \
+    yum -y update && \
+    yum -y clean all
+
+RUN chgrp -R 0 /userdata && \
+    chmod -R g=u /userdata
+
+ENTRYPOINT ["/bin/bash", "/userdata/start.sh"]
