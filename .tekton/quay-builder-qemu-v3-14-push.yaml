@@ -251,12 +251,14 @@ spec:
           - version=3.14
           - io.k8s.display-name="Red Hat Quay - Builder QEMU RHCOS"
           - io.k8s.description="Red Hat Quay - Builder QEMU RHCOS"
+          - io.openshift.tags="quay"
           - summary="Red Hat Quay - Builder QEMU RHCOS"
           - maintainer="support@redhat.com"
           - distribution-scope="restricted"
+          - description="Red Hat Quay - Builder QEMU RHCOS"
           - tags="quay"
           - url="https://docs.redhat.com/en/documentation/red_hat_quay/3.14"
-          - vendor="Red Hat, Inc."
+          - vendor=Red Hat, Inc.
       runAfter:
       - prefetch-dependencies
       taskRef:
