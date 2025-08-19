@@ -1,12 +1,12 @@
-name: Sync Master to Release Branch
+name: Sync Main to Release Branch
 
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
-  sync_master_to_release:
+  sync_main_to_release:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
@@ -19,23 +19,23 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "github-actions-bot@users.noreply.github.com"
 
-      - name: Merge master into release
+      - name: Merge main into release
         run: |
           BRANCH_NAME="${{ vars.BRANCH_SYNC_TARGET }}"
           if [ -z "$BRANCH_NAME" ]; then echo "BRANCH_SYNC_TARGET variable is not set" && exit 1; fi
-          echo "Syncing master to $BRANCH_NAME"
-          git checkout master
-          git pull origin master
-          MASTER_COMMIT=$(git rev-parse HEAD)
+          echo "Syncing main to $BRANCH_NAME"
+          git checkout main
+          git pull origin main
+          MAIN_COMMIT=$(git rev-parse HEAD)
 
           git fetch origin $BRANCH_NAME
           git checkout $BRANCH_NAME
           git pull origin $BRANCH_NAME
           RELEASE_COMMIT=$(git rev-parse HEAD)
-          echo "Rebasing $BRANCH_NAME ($RELEASE_COMMIT) onto master ($MASTER_COMMIT)"
-          git rebase master
+          echo "Rebasing $BRANCH_NAME ($RELEASE_COMMIT) onto main ($MAIN_COMMIT)"
+          git rebase main
           git push origin $BRANCH_NAME
 
-          echo "Merged master ($MASTER_COMMIT) into $BRANCH_NAME ($RELEASE_COMMIT)"
+          echo "Merged main ($MAIN_COMMIT) into $BRANCH_NAME ($RELEASE_COMMIT)"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
