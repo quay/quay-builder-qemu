@@ -5,6 +5,9 @@ artifacts:
   - download_url: https://rhcos.mirror.openshift.com/art/storage/prod/streams/4.12/builds/412.86.202305030814-0/x86_64/rhcos-412.86.202305030814-0-qemu.x86_64.qcow2.gz
     checksum: sha256:d96caa2a78dc134f2068212a6ca8f171a036792c6afbc7a406c18c2978527585
     filename: rhcos-qemu.x86_64.qcow2.gz
+  - download_url: https://rhcos.mirror.openshift.com/art/storage/prod/streams/4.12/builds/412.86.202305030814-0/aarch64/rhcos-412.86.202305030814-0-qemu.aarch64.qcow2.gz
+    checksum: sha256:3704c737a40a85af06e83c2c8c6bc7cad0c1dc46397dddc7bf61df0a7d4d44db
+    filename: rhcos-qemu.aarch64.qcow2.gz
   - download_url: https://rhcos.mirror.openshift.com/art/storage/prod/streams/4.12/builds/412.86.202305030814-0/ppc64le/rhcos-412.86.202305030814-0-qemu.ppc64le.qcow2.gz
     checksum: sha256:86d0b036aedbbff7c45187526f9a9c04ffea6457f76349f23b12accab3b8f43d
     filename: rhcos-qemu.ppc64le.qcow2.gz
