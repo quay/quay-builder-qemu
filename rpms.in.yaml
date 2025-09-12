@@ -1,0 +1,10 @@
+packages: ["jq", "xz", "openssh-clients", "qemu-kvm", "libgcrypt-devel"]
+contentOrigin:
+  repofiles:
+    - ./redhat.repo
+    - ./ubi.repo
+arches:
+  - x86_64
+  - aarch64
+  - ppc64le
+  - s390x
