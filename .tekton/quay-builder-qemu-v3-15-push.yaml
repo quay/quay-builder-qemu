@@ -10,10 +10,10 @@ metadata:
     pipelinesascode.tekton.dev/on-cel-expression: event == "push" && target_branch == "redhat-3.15"
   creationTimestamp:
   labels:
-    appstudio.openshift.io/application: quay-v3.15
-    appstudio.openshift.io/component: quay-builder-qemu-v3.15
+    appstudio.openshift.io/application: quay-v3-15
+    appstudio.openshift.io/component: quay-builder-qemu-v3-15
     pipelines.appstudio.openshift.io/type: build
-  name: quay-builder-qemu-v3.15-on-push
+  name: quay-builder-qemu-v3-15-on-push
   namespace: quay-eng-tenant
 spec:
   params:
@@ -22,7 +22,7 @@ spec:
   - name: revision
     value: '{{revision}}'
   - name: output-image
-    value: quay.io/redhat-user-workloads/quay-eng-tenant/quay-builder-qemu-v3.15:{{revision}}
+    value: quay.io/redhat-user-workloads/quay-eng-tenant/quay-builder-qemu-v3-15:{{revision}}
   - name: build-platforms
     value:
     - linux/x86_64
@@ -251,7 +251,7 @@ spec:
         value:
           - com.redhat.component="quay-builder-qemu-rhcos-container"
           - name="quay/quay-builder-qemu-rhcos-rhel8"
-          - version=3.15
+          - version=3.15.3
           - io.k8s.display-name="Red Hat Quay - Builder QEMU RHCOS"
           - io.k8s.description="Red Hat Quay - Builder QEMU RHCOS"
           - io.openshift.tags="quay"
@@ -635,7 +635,7 @@ spec:
     - name: netrc
       optional: true
   taskRunTemplate:
-    serviceAccountName: build-pipeline-quay-builder-qemu-v3.15
+    serviceAccountName: build-pipeline-quay-builder-qemu-v3-15
   workspaces:
   - name: git-auth
     secret:
