@@ -29,9 +29,6 @@ spec:
   - name: build-platforms
     value:
     - linux/x86_64
-    - linux/arm64
-    - linux/ppc64le
-    - linux/s390x
   - name: dockerfile
     value: Containerfile.quay-builder-qemu
   - name: hermetic
@@ -269,6 +266,7 @@ spec:
         - tags="quay"
         - url="https://docs.redhat.com/en/documentation/red_hat_quay/3.14"
         - vendor=Red Hat, Inc.
+        - cpe="cpe:/a:redhat:quay:3.10::el8"
       - name: BUILDAH_FORMAT
         value: $(params.buildah-format)
       runAfter:
