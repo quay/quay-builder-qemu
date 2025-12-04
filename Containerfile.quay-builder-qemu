@@ -2,7 +2,7 @@
 # Based on Dockerfile but with some necessary changes:
 # 1. Use registry base images
 # 2. fetch qemu artifact from cachi2 instead of downloading from internet
-FROM registry.redhat.io/ubi8/ubi:8.10-1752733233 AS builder
+FROM registry.redhat.io/ubi9/ubi:9.7-1764794285 AS builder
 
 WORKDIR /app
 
