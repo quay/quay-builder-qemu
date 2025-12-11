@@ -255,7 +255,7 @@ spec:
         value:
         - com.redhat.component="quay-builder-qemu-rhcos-container"
         - name="quay/quay-builder-qemu-rhcos-rhel8"
-        - version=3.14
+        - version=3.14.6
         - io.k8s.display-name="Red Hat Quay - Builder QEMU RHCOS"
         - io.k8s.description="Red Hat Quay - Builder QEMU RHCOS"
         - io.openshift.tags="quay"
