@@ -261,7 +261,7 @@ spec:
         value:
         - com.redhat.component="quay-builder-qemu-rhcos-container"
         - name="quay/quay-builder-qemu-rhcos-rhel8"
-        - version=3.14
+        - version=3.10.18
         - io.k8s.display-name="Red Hat Quay - Builder QEMU RHCOS"
         - io.k8s.description="Red Hat Quay - Builder QEMU RHCOS"
         - io.openshift.tags="quay"
@@ -270,7 +270,7 @@ spec:
         - distribution-scope="restricted"
         - description="Red Hat Quay - Builder QEMU RHCOS"
         - tags="quay"
-        - url="https://docs.redhat.com/en/documentation/red_hat_quay/3.14"
+        - url="https://docs.redhat.com/en/documentation/red_hat_quay/3.10"
         - vendor=Red Hat, Inc.
         - cpe="cpe:/a:redhat:quay:3.10::el8"
       - name: BUILDAH_FORMAT
