@@ -266,7 +266,7 @@ spec:
         - tags="quay"
         - url="https://docs.redhat.com/en/documentation/red_hat_quay/3.13"
         - vendor=Red Hat, Inc.
-        - cpe="cpe:/a:redhat:quay:3.13::el8"
+        - cpe=cpe:/a:redhat:quay:3.13::el8
         - release=3.13
       - name: BUILDAH_FORMAT
         value: $(params.buildah-format)
