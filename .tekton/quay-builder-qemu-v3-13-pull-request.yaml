@@ -256,18 +256,18 @@ spec:
         value: "true"
       - name: LABELS
         value:
-        - com.redhat.component="quay-builder-qemu-rhcos-container"
+        - com.redhat.component=quay-builder-qemu-rhcos-container
         - name=quay/quay-builder-qemu-rhcos-rhel8
         - version=3.13.11
-        - io.k8s.display-name="Red Hat Quay - Builder QEMU RHCOS"
-        - io.k8s.description="Red Hat Quay - Builder QEMU RHCOS"
-        - io.openshift.tags="quay"
-        - summary="Red Hat Quay - Builder QEMU RHCOS"
-        - maintainer="support@redhat.com"
-        - distribution-scope="restricted"
-        - description="Red Hat Quay - Builder QEMU RHCOS"
-        - tags="quay"
-        - url="https://docs.redhat.com/en/documentation/red_hat_quay/3.13"
+        - io.k8s.display-name=Red Hat Quay - Builder QEMU RHCOS
+        - io.k8s.description=Red Hat Quay - Builder QEMU RHCOS
+        - io.openshift.tags=quay
+        - summary=Red Hat Quay - Builder QEMU RHCOS
+        - maintainer=support@redhat.com
+        - distribution-scope=restricted
+        - description=Red Hat Quay - Builder QEMU RHCOS
+        - tags=quay
+        - url=https://docs.redhat.com/en/documentation/red_hat_quay/3.13
         - vendor=Red Hat, Inc.
         - cpe=cpe:/a:redhat:quay:3.13::el8
         - release=3.13
