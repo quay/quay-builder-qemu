@@ -659,6 +659,15 @@ spec:
       optional: true
     - name: netrc
       optional: true
+  taskRunSpecs:
+  - pipelineTaskName: ecosystem-cert-preflight-checks
+    stepSpecs:
+    - name: app-check
+      computeResources:
+        limits:
+          memory: 8Gi
+        requests:
+          memory: 4Gi
   taskRunTemplate:
     serviceAccountName: build-pipeline-quay-builder-qemu-v3-13
   workspaces:
