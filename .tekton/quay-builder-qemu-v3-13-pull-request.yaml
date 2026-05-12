@@ -663,6 +663,14 @@ spec:
     - name: netrc
       optional: true
   taskRunSpecs:
+  - pipelineTaskName: build-source-image
+    stepSpecs:
+    - name: use-trusted-artifact
+      computeResources:
+        requests:
+          memory: "2Gi"
+        limits:
+          memory: "2Gi"
   - pipelineTaskName: ecosystem-cert-preflight-checks
     stepSpecs:
     - name: app-check
