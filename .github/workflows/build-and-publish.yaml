@@ -44,7 +44,7 @@ jobs:
       
       - name: Build container for amd64
         id: docker_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v7
         env:
           TAG: amd64
         with:
@@ -59,7 +59,7 @@ jobs:
 
       - name: Build and push s390x
         id: docker_build_s390x
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v7
         env:
           TAG: s390x
         with:
@@ -74,7 +74,7 @@ jobs:
 
       - name: Build and push ppc64le
         id: docker_build_ppc64le
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v7
         env:
           TAG: ppc64le
         with:
