@@ -30,7 +30,7 @@ jobs:
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           echo "::set-output name=version::${BRANCH_NAME/${{ env.BRANCH_PREFIX }}/}"
       - name: Login to Quay.io
-        uses: docker/login-action@v1
+        uses: docker/login-action@v4
         with:
           registry: quay.io
           username: ${{ secrets.QUAY_USER }}
