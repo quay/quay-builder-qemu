@@ -2,7 +2,7 @@
 # Based on Dockerfile but with some necessary changes:
 # 1. Use registry base images
 # 2. fetch qemu artifact from cachi2 instead of downloading from internet
-FROM registry.redhat.io/ubi8/ubi:8.10-1752733233 AS builder
+FROM registry.redhat.io/ubi8/ubi:8.10-1781720109 AS builder
 
 WORKDIR /app
 
@@ -18,7 +18,7 @@ COPY start.sh /app/start.sh
 RUN cp /cachi2/output/deps/generic/rhcos-qemu.$(uname -m).qcow2.gz .
 RUN gunzip rhcos-qemu.$(uname -m).qcow2.gz
 
-FROM registry.redhat.io/ubi8/ubi:8.10-1752733233
+FROM registry.redhat.io/ubi8/ubi:8.10-1781720109
 
 RUN mkdir -p /userdata
 WORKDIR /userdata
