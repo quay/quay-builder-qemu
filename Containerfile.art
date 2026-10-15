@@ -1,4 +1,4 @@
-FROM registry.redhat.io/ubi8/ubi:latest AS builder
+FROM registry.redhat.io/ubi8/ubi:8.10 AS builder
 
 WORKDIR /app
 
@@ -15,7 +15,7 @@ COPY start.sh /app/start.sh
 RUN cp /cachi2/output/deps/generic/rhcos-qemu.$(uname -m).qcow2.gz .
 RUN gunzip rhcos-qemu.$(uname -m).qcow2.gz
 
-FROM registry.redhat.io/ubi8/ubi:latest
+FROM registry.redhat.io/ubi8/ubi:8.10
 
 LABEL com.redhat.component="quay-builder-qemu-rhcos-container"
 LABEL name="quay/quay-builder-qemu-rhcos-rhel8"
@@ -24,8 +24,11 @@ LABEL io.k8s.description="Red Hat Quay - Builder QEMU RHCOS"
 LABEL io.openshift.tags="quay"
 LABEL summary="Red Hat Quay - Builder QEMU RHCOS"
 LABEL description="Red Hat Quay - Builder QEMU RHCOS"
+LABEL cpe="cpe:/a:redhat:quay:3.10::el8"
 LABEL vendor="Red Hat, Inc."
-LABEL maintainer="quay-devel@redhat.com"
+LABEL distribution-scope="restricted"
+LABEL url="https://docs.redhat.com/en/documentation/red_hat_quay"
+LABEL maintainer="support@redhat.com"
 
 RUN mkdir -p /userdata
 WORKDIR /userdata
