@@ -10,6 +10,9 @@ on:
         description: 'Tag to attach to image'     
         required: true
 
+permissions:
+  contents: read
+
 jobs:
   build-and-publish:
     name: Publish container image
@@ -21,7 +24,9 @@ jobs:
     runs-on: 'ubuntu-latest'
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@0717577d45739eb3c851188b29f50ed6c0b2194e # v2.8.0
+        with:
+          persist-credentials: false
 
       - name: Set version from branch name
         id: version-from-branch
@@ -29,22 +34,22 @@ jobs:
         run: |
           BRANCH_NAME=${GITHUB_REF#refs/heads/}
           echo "::set-output name=version::${BRANCH_NAME/${{ env.BRANCH_PREFIX }}/}"
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@2b82ce82d56a2a04d2637cd93a637ae1b359c0a7 # v2.2.0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@885d1462b80bc1c1c7f0b00334ad271f09369c55 # v2.10.0
+
       - name: Login to Quay.io
-        uses: docker/login-action@v1
+        uses: docker/login-action@dd4fa0671be5250ee6f50aedf4cb05514abda2c7 # v1.14.1
         with:
           registry: quay.io
           username: ${{ secrets.QUAY_USER }}
           password: ${{ secrets.QUAY_TOKEN }}
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
       
       - name: Build container for amd64
         id: docker_build
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6 # v3.3.1
         env:
           TAG: amd64
         with:
@@ -59,7 +64,7 @@ jobs:
 
       - name: Build and push s390x
         id: docker_build_s390x
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6 # v3.3.1
         env:
           TAG: s390x
         with:
@@ -74,7 +79,7 @@ jobs:
 
       - name: Build and push ppc64le
         id: docker_build_ppc64le
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@1104d471370f9806843c095c1db02b5a90c5f8b6 # v3.3.1
         env:
           TAG: ppc64le
         with:
@@ -88,7 +93,7 @@ jobs:
           provenance: false
 
       - name: Build and push multi-arch manifest
-        uses: Noelware/docker-manifest-action@master
+        uses: Noelware/docker-manifest-action@b33ab348026b120a895167160f5605b0197f0862 # 0.4.3
         env:
           TAG: ${{ steps.version-from-branch.outputs.version }}${{ env.TAG_SUFFIX }}
         with:
